@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main_app'
+    'main_app',
 ]
 
 MIDDLEWARE = [
@@ -52,20 +51,22 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'painting_business.urls'
 
+TEMPLATE_DIR = [os.path.join(BASE_DIR, 'templates')]
+
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+     'BACKEND': 'django.template.backends.django.DjangoTemplates',
+     'DIRS': TEMPLATE_DIR,
+     'APP_DIRS': True,
+     'OPTIONS':
+         {'context_processors': [
+             'django.template.context_processors.debug',
+             'django.template.context_processors.request',
+             'django.contrib.auth.context_processors.auth',
+             'django.contrib.messages.context_processors.messages',
+         ],
+         },
+     },
 ]
 
 WSGI_APPLICATION = 'painting_business.wsgi.application'
@@ -122,5 +123,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
