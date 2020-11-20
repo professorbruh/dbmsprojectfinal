@@ -3,13 +3,14 @@ from django.contrib import admin
 # Register your models here.
 from .models import *
 
-@admin.register(customer_information)
-class Cust_Admin(admin.ModelAdmin):
-    search_fields = ("customer_id__startswith",)
-
+@admin.register(tiers)
 @admin.register(painting_information)
-class Paint_Admin(admin.ModelAdmin):
-    admin.site.register(sales_information)
+@admin.register(tiers_customer)
+@admin.register(warehouse)
+@admin.register(warehouse_painting)
+@admin.register(order_information)
+class Paint_Info(admin.ModelAdmin):
+    search_fields = ("painting_id__startswith",)
+class Order_Info(admin.ModelAdmin):
+    search_fields = ("user__startswith","painting__startwith",)
 
-class SalesInfo(admin.ModelAdmin):
-    search_fields = ("customer_id__starswith",)
